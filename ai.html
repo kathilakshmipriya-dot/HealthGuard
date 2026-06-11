@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Health Assistant</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+background:#f4f7fa;
+}
+
+.chat-container{
+max-width:800px;
+margin:auto;
+margin-top:50px;
+}
+
+.chat-box{
+height:450px;
+overflow-y:auto;
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+
+.user{
+text-align:right;
+margin:10px;
+}
+
+.bot{
+text-align:left;
+margin:10px;
+}
+
+.user span{
+background:#198754;
+color:white;
+padding:10px 15px;
+border-radius:15px;
+display:inline-block;
+}
+
+.bot span{
+background:#e9ecef;
+padding:10px 15px;
+border-radius:15px;
+display:inline-block;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="chat-container">
+
+<h2 class="text-center mb-4">
+🤖 AI Health Assistant
+</h2>
+
+<div class="chat-box" id="chatBox">
+
+<div class="bot">
+<span>
+Hello! Ask me health or hygiene related questions.
+</span>
+</div>
+
+</div>
+
+<div class="input-group mt-3">
+
+<input
+type="text"
+id="userInput"
+class="form-control"
+placeholder="Ask something...">
+
+<button
+class="btn btn-success"
+onclick="sendMessage()">
+
+Send
+
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function sendMessage(){
+
+let input =
+document.getElementById("userInput");
+
+let message =
+input.value.trim();
+
+if(message==="") return;
+
+let chat =
+document.getElementById("chatBox");
+
+chat.innerHTML += `
+<div class="user">
+<span>${message}</span>
+</div>
+`;
+
+let reply =
+"Please consult a healthcare professional for medical advice.";
+
+let text =
+message.toLowerCase();
+
+if(text.includes("bmi")){
+reply =
+"BMI measures body weight relative to height.";
+}
+
+else if(text.includes("water")){
+reply =
+"Adults should generally drink around 2-3 liters of water daily.";
+}
+
+else if(text.includes("fever")){
+reply =
+"Rest, stay hydrated and monitor temperature. Consult a doctor if symptoms worsen.";
+}
+
+else if(text.includes("exercise")){
+reply =
+"Try 30 minutes of walking or light exercise daily.";
+}
+
+else if(text.includes("sleep")){
+reply =
+"Adults generally need 7-9 hours of sleep each night.";
+}
+
+chat.innerHTML += `
+<div class="bot">
+<span>${reply}</span>
+</div>
+`;
+
+input.value="";
+
+chat.scrollTop =
+chat.scrollHeight;
+
+}
+
+</script>
+
+</body>
+</html>
